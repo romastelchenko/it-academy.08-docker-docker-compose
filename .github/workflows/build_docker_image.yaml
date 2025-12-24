@@ -31,7 +31,7 @@ jobs:
           IMAGE_NAME: ${{ steps.image_name.outputs.image_name }}
         run: |
           docker run -d --name app -p 2222:2222 ${IMAGE_NAME}
-          sleep(5)
+          sleep 5
           curl http://localhost:2222/time
 
       - name: Tag and push docker image to the registry
