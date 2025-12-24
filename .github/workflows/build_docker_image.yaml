@@ -15,7 +15,7 @@ jobs:
       - name: Generate image name
         id: image_name
         run: |
-          image_name="get-time-app:$(date +%m-%d-%Y)"
+          image_name="get-time-app:$(date +%m-%d-%y)"
           echo "Image name to build: ${image_name}"
           echo "image_name=${image_name}" >> "$GITHUB_OUTPUT"
 
