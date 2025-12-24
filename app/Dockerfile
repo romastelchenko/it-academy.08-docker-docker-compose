@@ -1,3 +1,5 @@
+test_bug
+
 FROM python:3.11-slim AS builder
 WORKDIR /application
 
