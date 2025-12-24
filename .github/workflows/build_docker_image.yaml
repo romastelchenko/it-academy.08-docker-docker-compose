@@ -15,8 +15,8 @@ jobs:
       - name: Generate image name
         id: image_name
         run: |
-          image_tag=`date +%m-%d-%Y`
-          image_name="app"
+          image_name="app:$(date +%m-%d-%Y)"
+          echo "Image name to build: ${image_name}"
           echo "image_name=${image_name}:${image_tag}" >> "$GITHUB_OUTPUT"
 
       - name: Build docker image
@@ -33,6 +33,8 @@ jobs:
           docker run -d --name app -p 2222:2222 ${IMAGE_NAME}
 
       - name: Tag and push docker image to the registry
+        env:
+          IMAGE_NAME: ${{ steps.image_name.outputs.image_name }}
         run: |
           registry_image="ghcr.io/romastelchenko/${IMAGE_NAME}"
           docker tag ${IMAGE_NAME} ${registry_image}
